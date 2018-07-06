@@ -1,9 +1,9 @@
 package com.kolyaventuri.quantifiedself.spring.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 public class FoodTest {
 	private Food food;
@@ -11,18 +11,18 @@ public class FoodTest {
 	private final String  name = "Name";
 	private final int calories = 30;
 	
-	@BeforeEach
+	@Before
 	public void setup() {
 		food = new Food(name, calories);
 	}
 	
 	@Test
 	public void FoodHasName_Test() {
-		assertEquals(food.getName(), name);
+		assertEquals(name, food.getName());
 	}
 	
 	@Test
 	public void FoodHasCalories_Test() {
-		assertEquals(food.getCalories(), name);
+		assertEquals(calories, food.getCalories());
 	}
 }
