@@ -21,4 +21,12 @@ public class Food extends Model {
 	public int getCalories() {
 		return calories;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
 }

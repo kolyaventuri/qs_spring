@@ -41,6 +41,6 @@ public class FoodTest {
 		
 		food.setCalories(newCalories);
 		
-		assertEquals(newCalories, food.getName());
+		assertEquals(newCalories, food.getCalories());
 	}
 }
