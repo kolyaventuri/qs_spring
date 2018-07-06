@@ -25,4 +25,22 @@ public class FoodTest {
 	public void FoodHasCalories_Test() {
 		assertEquals(calories, food.getCalories());
 	}
+	
+	@Test
+	public void CanSetFoodName_Test() {
+		String newName = "New Name";
+		
+		food.setName(newName);
+		
+		assertEquals(newName, food.getName());
+	}
+	
+	@Test
+	public void CanSetFoodCalories_Test() {
+		int newCalories = 50;
+		
+		food.setCalories(newCalories);
+		
+		assertEquals(newCalories, food.getName());
+	}
 }
