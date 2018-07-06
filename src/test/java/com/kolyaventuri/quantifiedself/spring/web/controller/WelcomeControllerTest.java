@@ -20,7 +20,7 @@ public class WelcomeControllerTest {
     }
 
     @Test
-    public void givenHomePageURI_whenMockMVC_thenReturnsIndexJSPViewName() throws Exception {
+    public void givenHomePageUri_withMockMVC_returnsContent() throws Exception {
         this.mockMvc.perform(get("/")).andExpect(content().string("Quantified Self Spring"));
     }
 }
