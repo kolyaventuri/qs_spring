@@ -24,10 +24,10 @@ public class Food extends Model {
     )
     private Long id;
 	
-    @Column(columnDefinition = "name")
+    @Column(name="name")
 	private String name;
 	
-	@Column(columnDefinition = "calories")
+	@Column(name="calories")
 	private int calories;
 	
 	public Food(String name, int calories) {
