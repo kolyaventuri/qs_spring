@@ -1,9 +1,9 @@
 package com.kolyaventuri.quantifiedself.spring.repository;
 
-import com.kolyaventuri.quantifiedself.spring.model.Food;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.kolyaventuri.quantifiedself.spring.model.Food;
 
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Long> {

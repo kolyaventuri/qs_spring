@@ -2,7 +2,10 @@ package com.kolyaventuri.quantifiedself.spring.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,12 @@ public class Food extends Model {
 	private static final long serialVersionUID = -4307755261951326293L;
 
 	@Id
+	@GeneratedValue(generator = "food_generator", strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "food_generator",
+            sequenceName = "food_sequence"
+    )
+    private Long id;
 	
     @Column(columnDefinition = "name")
 	private String name;
