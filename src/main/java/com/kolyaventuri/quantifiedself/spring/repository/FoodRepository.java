@@ -1,10 +1,10 @@
 package com.kolyaventuri.quantifiedself.spring.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.kolyaventuri.quantifiedself.spring.model.Food;
 
-@RepositoryRestResource
-public interface FoodRepository extends CrudRepository<Food, Long> {
+@Repository
+public interface FoodRepository extends JpaRepository<Food, Long> {
 }

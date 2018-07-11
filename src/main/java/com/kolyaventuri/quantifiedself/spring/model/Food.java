@@ -35,6 +35,8 @@ public class Food extends Model {
 		this.calories = calories;
 	}
 	
+	public Food() { }
+	
 	public String getName() {
 		return name;
 	}
