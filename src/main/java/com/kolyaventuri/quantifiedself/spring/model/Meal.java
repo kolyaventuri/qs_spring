@@ -50,7 +50,7 @@ public class Meal extends Model {
     @JoinTable(name = "meal_foods",
             joinColumns = { @JoinColumn(name = "meal_id") },
             inverseJoinColumns = { @JoinColumn(name = "food_id") })
-    private Set<Food> food = new HashSet<>();
+    private Set<Food> foods = new HashSet<>();
 	
 	public String getName() {
 		return name;
@@ -58,5 +58,13 @@ public class Meal extends Model {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Food> getFoods() {
+		return foods;
+	}
+	
+	public void setFoods(Set<Food> foods) {
+		this.foods = foods;
 	}
 }
