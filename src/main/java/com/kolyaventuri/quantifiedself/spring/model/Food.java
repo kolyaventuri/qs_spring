@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
 @Table(name = "foods")
 public class Food extends Model {
@@ -22,6 +24,8 @@ public class Food extends Model {
             name = "food_generator",
             sequenceName = "food_sequence"
     )
+	
+	@JsonInclude
     private Long id;
 	
     @Column(name="name")
@@ -36,6 +40,10 @@ public class Food extends Model {
 	}
 	
 	public Food() { }
+	
+	public Long getId() {
+		return id;
+	}
 	
 	public String getName() {
 		return name;

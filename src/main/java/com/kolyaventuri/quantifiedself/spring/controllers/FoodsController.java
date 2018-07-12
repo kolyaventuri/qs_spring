@@ -2,8 +2,10 @@ package com.kolyaventuri.quantifiedself.spring.controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,5 +37,10 @@ public class FoodsController {
 		foodRepository.save(food);
 		
 		return food;
+	}
+	
+	@RequestMapping("/{id}")
+	public Optional<Food> show(@PathVariable int id) {
+		return foodRepository.findById((long) id);
 	}
 }
