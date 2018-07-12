@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.kolyaventuri.quantifiedself.spring.repository.FoodRepository;
 
 @RestController
 @RequestMapping("/api/v1/foods")
+@CrossOrigin(origins = "*")
 public class FoodsController {
 	
 	@Autowired
@@ -34,7 +36,7 @@ public class FoodsController {
 		Map<String, Object> foodObject = (Map<String, Object>) payload.get("food");
 		
 		String name = (String) foodObject.get("name");
-		int calories = (int) foodObject.get("calories");
+		int calories = Integer.parseInt((String) foodObject.get("calories"));
 				
 		Food food = new Food(name, calories);
 		foodRepository.save(food);
@@ -69,7 +71,7 @@ public class FoodsController {
 		Map<String, Object> foodObject = (Map<String, Object>) payload.get("food");
 		
 		String name = (String) foodObject.get("name");
-		Integer calories = (Integer) foodObject.get("calories");
+		Integer calories = Integer.parseInt((String) foodObject.get("calories"));
 		
 		if(name != null) {
 			food.setName(name);
