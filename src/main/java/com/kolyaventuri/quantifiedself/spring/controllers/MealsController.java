@@ -70,4 +70,27 @@ public class MealsController {
 		
 		return message;
 	}
+	
+	@RequestMapping(value="/{meal_id}/foods/{id}", method=RequestMethod.DELETE)
+	public HashMap<String, String> destroy(@PathVariable long meal_id, @PathVariable long id, HttpServletResponse response) throws IOException {
+		Optional<Meal> foundMeal = mealRepository.findById(meal_id);
+		Optional<Food> foundFood = foodRepository.findById(id);
+		
+		if(!foundMeal.isPresent() || !foundFood.isPresent()) {
+			response.sendError(404);
+			return null;
+		}
+		
+		Meal meal = (Meal) foundMeal.get();
+		Food food = (Food) foundFood.get();
+		
+		meal.removeFood(food);
+		
+		mealRepository.save(meal);
+		
+		HashMap<String, String> message = new HashMap<String, String>();
+		message.put("message", "Successfully removed " + food.getName() + " from " + meal.getName());
+		
+		return message;
+	}
 }
