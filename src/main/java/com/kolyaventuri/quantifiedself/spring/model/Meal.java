@@ -52,6 +52,10 @@ public class Meal extends Model {
             inverseJoinColumns = { @JoinColumn(name = "food_id") })
     private Set<Food> foods = new HashSet<>();
 	
+	public Long getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}
