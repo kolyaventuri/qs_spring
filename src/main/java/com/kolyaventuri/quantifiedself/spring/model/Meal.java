@@ -75,4 +75,8 @@ public class Meal extends Model {
 	public void addFood(Food food) {
 		this.foods.add(food);
 	}
+	
+	public void removeFood(Food food) {
+		this.foods.remove(food);
+	}
 }
