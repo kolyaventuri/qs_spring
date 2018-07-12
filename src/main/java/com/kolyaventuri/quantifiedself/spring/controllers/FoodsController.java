@@ -43,15 +43,27 @@ public class FoodsController {
 	}
 	
 	@RequestMapping("/{id}")
-	public Optional<Food> show(@PathVariable long id) {
-		return foodRepository.findById(id);
+	public Food show(@PathVariable long id, HttpServletResponse response) throws IOException {
+		Optional<Food> foundFood = foodRepository.findById(id);
+		
+		if(!foundFood.isPresent()) { 
+			response.sendError(404);
+			return null;
+		}
+		
+		Food food = (Food) foundFood.get();
+		
+		return food;
 	}
 	
 	@RequestMapping(value="/{id}", method={RequestMethod.PATCH, RequestMethod.PUT})
 	public Food update(@PathVariable long id, @RequestBody Map<String, Object> payload, HttpServletResponse response) throws IOException {
 		Optional<Food> foundFood = foodRepository.findById(id);
 
-		if(!foundFood.isPresent()) response.sendError(400);
+		if(!foundFood.isPresent()) { 
+			response.sendError(400);
+			return null;
+		}
 		
 		Food food = (Food) foundFood.get();
 		Map<String, Object> foodObject = (Map<String, Object>) payload.get("food");
@@ -70,5 +82,21 @@ public class FoodsController {
 		foodRepository.save(food);
 		
 		return food;
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public void destroy(@PathVariable long id, HttpServletResponse response) throws IOException {
+		Optional<Food> foundFood = foodRepository.findById(id);
+		
+		if(!foundFood.isPresent()) { 
+			response.sendError(404);
+			return;
+		}
+		
+		Food food = (Food) foundFood.get();
+		
+		foodRepository.delete(food);
+		
+		response.setStatus(204);
 	}
 }
