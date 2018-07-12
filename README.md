@@ -11,7 +11,7 @@ Clone down the repository and run install dependenices using maven.
 
 ### Running Quantified self
 
-Quantified Self is an Express.JS app, and can therefore be run simply by using the `mvn spring-boot:run` command. This will start the server on `localhost:3000`
+Quantified Self is a Spring Boot application and can therefore be run simply by using the `mvn spring-boot:run` command. This will start the server on `localhost:3000`
 
 **Please run or deploy the [frontend service](https://github.com/kolyaventuri/qs_spring_fe) in order to interact with the application as an end user.**
 
