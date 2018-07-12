@@ -71,4 +71,8 @@ public class Meal extends Model {
 	public void setFoods(Set<Food> foods) {
 		this.foods = foods;
 	}
+	
+	public void addFood(Food food) {
+		this.foods.add(food);
+	}
 }
