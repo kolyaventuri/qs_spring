@@ -1,8 +1,11 @@
 package com.kolyaventuri.quantifiedself.spring.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +43,32 @@ public class FoodsController {
 	}
 	
 	@RequestMapping("/{id}")
-	public Optional<Food> show(@PathVariable int id) {
-		return foodRepository.findById((long) id);
+	public Optional<Food> show(@PathVariable long id) {
+		return foodRepository.findById(id);
+	}
+	
+	@RequestMapping(value="/{id}", method={RequestMethod.PATCH, RequestMethod.PUT})
+	public Food update(@PathVariable long id, @RequestBody Map<String, Object> payload, HttpServletResponse response) throws IOException {
+		Optional<Food> foundFood = foodRepository.findById(id);
+
+		if(!foundFood.isPresent()) response.sendError(400);
+		
+		Food food = (Food) foundFood.get();
+		Map<String, Object> foodObject = (Map<String, Object>) payload.get("food");
+		
+		String name = (String) foodObject.get("name");
+		Integer calories = (Integer) foodObject.get("calories");
+		
+		if(name != null) {
+			food.setName(name);
+		}
+		
+		if(calories != null) {
+			food.setCalories((int) calories);
+		}
+		
+		foodRepository.save(food);
+		
+		return food;
 	}
 }
